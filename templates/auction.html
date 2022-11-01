@@ -1,0 +1,135 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat area</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@100&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+        *{
+            box-sizing: border-box;
+        }
+        body,html{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            /* background-color: grey; */
+            background-image: linear-gradient(to right,blue,aqua)
+        }
+        .header1{
+            background-image: url("{% static 'Images/15.jpg' %}");
+            padding: 1em;
+            text-align: center;
+            font-family: 'Source Code Pro', monospace;
+            /* background-colo  r: rgb(0,0,0,0.4); */
+            margin: 0px;;
+        }
+        .marquee1{
+                    margin-bottom: 0px;
+                    margin-top: 10px;
+                    font-size: 3em;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
+                    filter: drop-shadow(0px 1px black) drop-shadow(0 -1px black) drop-shadow(1px 0 black) drop-shadow(-1px 0 black);
+                    color: black;
+                    /* font-family: 'Ms Madi', cursive; */
+                    font-family: 'Merienda', cursive;
+                    font-weight: bolder;
+                    background-image: linear-gradient(to right,rgb(255, 115, 0) ,rgb(246, 255, 0),rgb(255, 115, 0));
+        }
+        .container{
+            border:15px ridge white;
+            margin: 10px;
+            background-image: linear-gradient(to right,rgb(58, 58, 58),rgb(120, 120, 120),rgb(58, 58, 58));
+            width: 70%;
+            
+        }
+        .textbox1{
+            padding:10px 10px 10px 10px;
+            font-size: 2em;
+            width: 50%;
+            font-family: 'Josefin Sans',cursive;
+        }
+        .chat-content{
+            padding: 30px 30px 30px 25px;
+            
+            font-size: 2em;
+            background-image: linear-gradient(to right,aqua,rgb(255, 252, 48));
+            border-left:10px solid rgb(157, 255, 0);
+            border-right:10px solid rgb(157, 255, 0);
+            width: 50%;
+            font-family: 'Montserrat', sans-serif;
+            margin: 20px;
+            border-radius:1%;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <header class="header1">
+            <h1 class="main-heading">
+                <a href="\page1" style="text-decoration:none;color:white;">T20 CRICKET AUCTION</a>
+            </h1>
+        </header>
+
+        
+        <p class="caption">
+            <marquee behavior="scroll" direction="right" scrollamount="0" class="marquee1">
+                <center>Auction Chat</center>
+            </marquee>
+        </p>
+        <div class="container">
+            
+            <br><br>
+            <form id = "123">
+                <input type="text" id="message"  name="message" placeholder="Type Your Message Here" class="textbox1">
+            </form>
+
+            
+            <li id="new_elements" class="chat-content">
+                
+            </li>
+        </div>
+    <script type = "text/javascript">
+        let url = `ws://${window.location.host}/ws/socket-server/`
+        const chatSocket = new WebSocket(url)
+        chatSocket.onmessage = function(e) {
+            let data = JSON.parse(e.data)
+            console.log("Data : ", data)
+            
+            if(data.type = 'chat'){
+                let Node=document.createElement("ul");
+                const textnode = document.createTextNode(data["message"])
+                Node.appendChild(textnode)
+                console.log(Node)
+                document.getElementById("new_elements").appendChild(Node)
+              }
+        }
+
+        let form = document.getElementById("123")
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            let message = document.querySelector("#message").value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }))
+            form.reset()
+        })
+    </script>
+</center>
+</body>
+</html>

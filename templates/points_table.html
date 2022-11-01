@@ -1,0 +1,216 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');    
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=My+Soul&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+        .marquee1{
+                    margin-bottom: 0px;
+                    margin-top: 10px;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
+                    filter: drop-shadow(0px 1px black) drop-shadow(0 -1px black) drop-shadow(1px 0 black) drop-shadow(-1px 0 black);
+                    color: rgb(0, 0, 0);
+                    /* font-family: 'Ms Madi', cursive; */
+                    font-family: 'My Soul', cursive;
+                    /* font-family: 'Lobster',cursive;
+                    font-family: 'Dancing Script',cursive;
+                    font-family: 'Rajdhani',cursive;
+                    font-family: 'Comfortaa',cursive;
+                    font-family: 'Chakra Petch',cursive;
+                    font-family: 'Lavishly Yours', cursive;
+                    font-family: 'Orbitron',cursive;
+                    font-family: 'Gloria Hallelujah', cursive; */
+                    
+                    font-weight: bolder;
+                    background-image: linear-gradient(to right,rgb(244, 103, 242) ,orange,rgb(244, 103, 242));
+        }
+        *{
+            box-sizing: border-box;
+        }
+        body, html{
+            margin:0;
+            padding: 0;
+        }
+        .table1 th{
+            padding: 1em;;
+        }
+        .table1 td{
+            padding: 1em;
+        }
+        .standings-grid-table-row {
+            border-radius: 0.2rem;
+            height: 4rem;
+            overflow: hidden;
+            transition: background-color .1s ease-in-out;
+        }
+
+        .standings-grid-table-grid {
+            display: grid;
+            width: 100%;
+        }
+
+        .standings-grid-table-cell {
+            align-items: center;
+            display: flex;
+            padding: 0 0.5rem;
+        }
+
+        .standings-grid-table-header {
+            background-color: black;
+            color: white;
+            font-size: 1.2rem;
+            height: 3.5rem;
+            line-height: 1;
+            word-break: break-word;
+        }
+        .standings-grid-table-right {
+            justify-content: flex-end;
+            text-align: right;
+            white-space: nowrap;
+        }
+        .header1{
+            background-image: url("{% static 'Images/15.jpg' %}");
+            padding: 1em;
+            text-align: center;
+            font-family: 'Source Code Pro', monospace;
+            /* background-colo  r: rgb(0,0,0,0.4); */
+            margin: 0px;;
+        }
+
+
+
+        .grid-container {
+        display: inline-grid;
+        /* float: right; */
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
+        /* row-gap: 100px; */
+        
+        grid-template-columns: auto auto auto auto auto auto auto auto auto;
+
+        background-image: linear-gradient(to right, rgba(0, 145, 255, 0.7),rgba(0, 255, 255, 0.7),rgb(0,145,255,0.7));
+        padding: 30px 10px 50px 10px;
+        border: 5px outset grey;
+        }
+        .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        /* border: 1px solid rgba(0, 0, 0, 0.8); */
+        padding: 40px;
+        font-size: 30px;
+        text-align: center;
+        }
+        .grid-item-img {
+        background-color: rgba(255, 255, 255, 0.8);
+        /* border: 1px solid rgba(0, 0, 0, 0.8); */
+        padding: 0px;
+        font-size: 30px;
+        text-align: center;
+        }
+
+        .caption{
+            grid-column-start: 1;
+            grid-column-end: 10;
+            color:black;
+            font-family: 'Josefin Sans', cursive;
+            text-align: center;
+            font-size: 3em;
+            padding:5px;
+            border-bottom: 3px SOLID white;
+            border-top: 3px solid white;
+            margin:0;
+            margin-bottom: 10px;
+        }
+
+        .grid-header{
+            background-color: rgb(217, 253, 149);
+        }
+        
+        .name{
+            /* background-color: rgb(217, 253, 149); */
+            grid-column-start: 2;
+            grid-column-end: 9;
+        }.name-value{
+            /* background-color: rgb(217, 253, 149); */
+            grid-column-start: 2;
+            grid-column-end: 9;
+        }
+        .img-icon{
+            width: 115px;
+            padding: 0px;
+            margin: 0px;
+            border-bottom: 10px ridge darkcyan;
+            /* border-top: 10px ridge aqua; */
+            border-radius: 50%;
+        }
+        
+        .name-value:hover{
+            /* background-color: black; */
+            background-color: rgb(255, 224, 191);
+        }
+        
+    </style>
+    <title>
+            Points Table
+    </title>
+</head>
+
+<body>
+    <center>
+    <header class="header1">
+        <h1 class="main-heading">
+            <a href="\page1" style="text-decoration:none;color:white;">T20 CRICKET AUCTION</a>
+                </h1>
+    </header>
+    <hr>
+    <!-- <h1 class="heading1">Leaderboard</h1> -->
+    
+</center>
+    
+    <div class="grid-container">
+        <p class="caption">
+            <marquee behavior="scroll" direction="right" scrollamount="0" class="marquee1">
+                <center>Player Leaderboard</center>
+            </marquee>
+        </p>
+
+        <div class="grid-item grid-header">Rank</div>
+        <div class="grid-item grid-header name">Name</div>
+        <div class="grid-item grid-header">Points</div>  
+        
+        {%for i in pts%}
+            <div class="grid-item">{{i.index}}</div>
+            <!-- <div class="grid-item-img"><img src="leaderboard icons/5.png"  class="img-icon"></div> -->
+            <div class="grid-item name-value">{{i.player}}</div>
+            <div class="grid-item">{{i.points}}</div> 
+        {%endfor%}
+        
+        
+        <!-- <div class="grid-item">2</div> -->
+        <!-- <div class="grid-item-img"><img src="leaderboard icons/1.jpg" class="img-icon"></div> -->
+        <!-- <div class="grid-item name-value">Person-2</div> -->
+        <!-- <div class="grid-item">9 Points</div>   -->
+    </div>
+    <hr>
+
+</body>
+
+</html>

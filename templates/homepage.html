@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- <link rel="stylesheet" href="style.css"/> -->
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap');
+body {
+    /* background-image: linear-gradient(90deg,rgb(247, 198, 109),rgb(248, 189, 79), rgb(245, 58, 58),rgb(248, 189, 79),rgb(247, 198, 109)); */
+    /*background-image: url("{% static 'Images/SS9.png' %}");*/
+    background-repeat: no-repeat;
+    background-size: 1300px 800px;
+    text-align: center;
+
+}
+
+@keyframes example {
+    0% {
+        background-color: rgb(238, 255, 0);
+        font-size: 2em;
+        border: 1mm solid #ffffff;}
+    
+    30%{
+        font-size: 2em;
+        background-color: rgb(189, 184, 255,0.7);
+    }
+    50%{
+        border: 1.7mm ridge #ff0000;
+    }
+    60%{
+        background-color:rgb(255, 187, 187,0.7) ;
+    }
+    100% {
+        background-color: rgb(57, 247, 152,0.7);
+        font-size: 1.7em;
+        border: 4mm ridge #32a1ce;
+    }
+  }
+
+  @keyframes headermove{
+    0%{
+        font-size: 1.1em;
+    }
+    100%{
+        font-size: 1.5em;
+    }
+  }
+
+.heading1{
+    margin: auto;
+    background-color: rgba(57, 101, 247, 0.8);
+    border: 4mm ridge #f1ff2c;
+    padding: 1em;
+    color: rgb(255, 255, 255);
+    font-family: 'Space Mono', sans-serif;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* animation-iteration-count: infinite; */
+    font-size: 1.7em;
+    
+}
+
+.thumbnail{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+.header{
+    font-family: 'Hurricane', cursive;
+    font-size: 1.5em;
+    animation-name: headermove;
+    padding: 0px;
+    animation-duration: 1s;
+    color:darkred;
+    /* border: 10px solid gold; */
+    
+}
+.submit {
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    color:rgb(221, 221, 221);
+    background: rgb(0, 60, 255);
+    border-radius: 12px;
+    border-color: cyan;
+
+    transition: width 1s,height 2s,color 1s,background 1s,border-radius 1s,border-color 1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+}
+.submit:hover{
+    width: 110px;
+    height: 55px;
+    border-radius: 25px;
+    border-color: yellow;
+    color:rgb(238, 255, 0);
+    background: rgb(252, 6, 80);
+    cursor: pointer;
+    /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+}
+.options{
+    cursor: pointer;
+    font-size: 1.4em;
+    font-family: 'Montserrat', sans-serif;
+    
+    
+}
+
+.inp{
+    background-color: rgb(0, 255, 255, 0.3);
+    border: 1mm outset aqua;
+    border-style: hidden solid hidden solid;
+}
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T20CricketAuction</title>
+</head>
+<body>
+    <header class="header">
+        
+        <h1>
+            T20 CRICKET AUCTION
+        </h1>
+    </header>
+    <br><br>
+    {%if user.is_authenticated %}
+    <h3>Hello, {{user.first_name}}</h3>
+    <a href="accounts/logout">logout</a>
+    {%else%}
+    <a href="accounts/register">register</a><br>
+    <a href="accounts/login">login</a>
+    {%endif%}
+    <br><br>
+    <main>
+        <div class="container">
+            <br><br><br><br>
+            <h2 class="heading1">
+                <i>
+                Select the match in which you wish to participate  
+            </h2><br><br></div></i>
+        </div>
+    </main>
+    <form class = "inp" action="/page1/" method="POST">
+        {% csrf_token %}
+        <br><br>
+        {%for i in req%}
+                <input type="radio" id={{i.indx}} name="match">
+                <b><label class="options" for={{i.indx}}>{{i.team1}} vs {{i.team2}}</label></b><br>
+        {%endfor%}
+        <br><br>
+        <input class="submit" type = "submit" name="submit" >
+    </form><br><br>
+    <a href="auction">websocketpage</a>
+</body>
+</html>

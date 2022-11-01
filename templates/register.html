@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="register" method="post">
+        {% csrf_token %}
+            <label class="options" for=1>Firstname :</label>
+            <input type="text" name="first_name" id = 1 placeholder = 'Firstname'><br>
+            <label class="options" for=2>Lastname :</label>
+            <input type="text" name="last_name" id = 2 placeholder = 'Lastname'><br>
+            <label class="options" for=3>Username :</label>
+            <input type="text" name="username" id = 3  placeholder = 'Username'><br>
+            <label class="options" for=4>Email :</label>
+            <input type="email" name="email" id = 4  placeholder = 'Email'><br>
+            <label class="options" for=5>Password :</label>
+            <input type="password" name="password1" id = 5 placeholder = 'Password'><br>
+            <label class="options" for=6>ConfirmPassword :</label>
+            <input type="password" name="password2" id = 6 placeholder = 'ConfirmPassword'><br><br>
+        <input class="submit" type = "submit" name="submit" >
+    </form>
+</body>
+</html>
